@@ -14,7 +14,7 @@ const ideas= [
         id:2,
         text:" Positive Newspaper, anewsletter that only shares positive, uplifting news",
         tag: 'technology',
-        username:'Lydiamule',
+        username:'Lydia',
         date:'2024-01-15'
 
     },
@@ -22,7 +22,7 @@ const ideas= [
         id:3,
         text:" Positive Newspaper, anewsletter that only shares positive, uplifting news",
         tag: 'technology',
-        username:'Lydiamule',
+        username:'mule',
         date:'2024-01-15'
 
     },

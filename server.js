@@ -1,10 +1,13 @@
 const express= require('express')
 const ideadRouter= require('./routes/ideas')
-const port =5000;
+require('dotenv').config();
+const port = process.env.PORT || 5000
+
+const connectDB= require('./config/db')
+connectDB();
+
 
 const App= express()
-
-
 // body parser middleware
 App.use(express.json())
 App.use(express.urlencoded({extended:false}))
