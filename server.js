@@ -1,6 +1,7 @@
 const path= require('path')
 const express= require('express')
 const ideadRouter= require('./routes/ideas')
+const cors= require('cors')
 require('dotenv').config();
 const port = process.env.PORT || 5000
 
@@ -16,6 +17,13 @@ App.use(express.static(path.join(__dirname, 'public')))
 // body parser middleware
 App.use(express.json())
 App.use(express.urlencoded({extended:false}))
+
+
+App.use(
+    cors({
+    origin:['http://localhost:5000', 'http://localhost:3000'],
+    credentiala: true
+}))
 App.get('/', (req,res)=>{
     res.json({message:'Message to random ideas'})
 })

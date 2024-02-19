@@ -1,45 +1,13 @@
+import IdeasApi from "../services/IdeasApi"
+
+
+
 class IdeaList{
     constructor(){
         this._ideaList= document.querySelector('#idea-list')
-        this._ideas=[
-            {
-                id:1,
-                text:'idea 1',
-                username: 'lydia',
-                tag: 'technology',
-                date: '09/02/2024'
-            },
-            {
-                id:2,
-                text:'            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem accusantium, nesciunt cumque tenetur modi odit illum dolore assumenda delectus esse, itaque sint necessitatibus id explicabo ullam eum excepturi sit nobis',
-                username: 'mule',
-                tag: 'inventions',
-                date: '10/02/2024'
-            }
-            ,           
-            {
-                id:3,
-                text:'idea 1',
-                username: 'lydia',
-                tag: 'love',
-                date: '09/02/2024'
-            },
-            {
-                id:3,
-                text:'idea 1',
-                username: 'lydia',
-                tag: 'business',
-                date: '09/02/2024'
-            },
-            {
-                id:3,
-                text:'idea 1',
-                username: 'lydia',
-                tag: 'business',
-                date: '09/02/2024'
-            }
+        this._ideas=[]
 
-        ]
+        this.getIdeas()
         this._validTags= new Set()
         this._validTags.add('technology')
         this._validTags.add('software')
@@ -47,6 +15,20 @@ class IdeaList{
         this._validTags.add('education')
         this._validTags.add('health')
         this._validTags.add('inventions')
+    }
+
+
+
+    async getIdeas(){
+        try {
+            const res= await IdeasApi.getIdeas()
+            this._ideas=res.data.data
+            console.log(this._ideas);
+            this.render()            
+                 } catch (error) {
+            console.log(error);
+        }
+       
     }
 getTagClass(tag){
     tag= tag.toLowerCase()
@@ -92,7 +74,7 @@ render(){
         
         return    `
         
-            <div class="card col-sm-5 px-3 mx-2 ">
+            <div class="card col-sm-5 px-3 mx-3 ">
                 <div class="card-body bg-bright">
                     <div class=" mb-2 ">
                         <h6 class="text-end"><i class="fa fa-xmark text-danger text-right "></i>
