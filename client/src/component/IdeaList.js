@@ -22,7 +22,7 @@ class IdeaList{
             if(e.target.classList.contains('fa-xmark')){
                 e.stopImmediatePropagation()
                 const ideaId= e.target.parentElement.parentElement.parentElement.dataset.id;
-                console.log(ideaId);
+                // console.log(ideaId);
                 this.deleteIdea(ideaId)
 
             }
@@ -34,7 +34,7 @@ class IdeaList{
         try {
             const res= await IdeasApi.getIdeas()
             this._ideas=res.data.data
-            console.log(this._ideas);
+            // console.log(this._ideas);
             this.render()            
                  } catch (error) {
             console.log(error);

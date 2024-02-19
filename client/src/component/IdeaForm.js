@@ -39,11 +39,11 @@ class IdeaForm{
         } catch (error) {
             console.log(error);
         }
-        idea.username=''
-        idea.tag=''
-        idea.text=''
-
+        this._form.elements.ideaText.value = '';
+        this._form.elements.tag.value = '';
+        this._form.elements.username.value = '';
         this.render()
+        
         const modal= document.getElementById('modal')
         const modalEl= Modal.getInstance(modal)
         modalEl.hide()

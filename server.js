@@ -21,7 +21,7 @@ App.use(express.urlencoded({extended:false}))
 
 App.use(
     cors({
-    origin:['http://localhost:5000', 'http://localhost:3000'],
+    origin:['http://localhost:5000', 'http://localhost:3000','http://127.0.0.1:5500'],
     credentiala: true
 }))
 App.get('/', (req,res)=>{
