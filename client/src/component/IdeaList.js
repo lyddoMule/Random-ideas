@@ -17,6 +17,17 @@ class IdeaList{
         this._validTags.add('inventions')
     }
 
+    addEventListeners(){
+        this._ideaList.addEventListener('click', (e)=>{
+            if(e.target.classList.contains('fa-xmark')){
+                e.stopImmediatePropagation()
+                const ideaId= e.target.parentElement.parentElement.parentElement.dataset.id;
+                console.log(ideaId);
+                this.deleteIdea(ideaId)
+
+            }
+        })
+    }
 
 
     async getIdeas(){
@@ -27,9 +38,25 @@ class IdeaList{
             this.render()            
                  } catch (error) {
             console.log(error);
-        }
-       
+        }    
     }
+
+    async deleteIdea(ideaId){
+        try {
+            const res = await IdeasApi.deleteIdeas(ideaId)
+            this._ideas.filter((idea)=> idea._id!==ideaId)
+            this.getIdeas()
+        } catch (error) {
+            alert('You can not delete this resource')
+        }
+    }
+
+
+    addIdeaToList(idea){
+        this._ideas.push(idea)
+        this.render()
+    }
+
 getTagClass(tag){
     tag= tag.toLowerCase()
     let tagClass=''
@@ -71,16 +98,15 @@ getTagClass(tag){
 render(){
         this._ideaList.innerHTML= this._ideas.map((idea)=>{
             let tagClass= this.getTagClass(idea.tag)
-        
+        const deleteBtn= idea.username===localStorage.getItem('username')
+        ?`<h6 class="text-end mb-2"><i class="fa fa-xmark text-danger"></i>
+        </h6>`:''
         return    `
         
-            <div class="card col-sm-5 px-3 mx-3 ">
+            <div class="card col-sm-5 mx-3 " data-id="${idea._id}">
                 <div class="card-body bg-bright">
-                    <div class=" mb-2 ">
-                        <h6 class="text-end"><i class="fa fa-xmark text-danger text-right "></i>
-                        </h6>
-                    </div>
-                    <div class="text mb-3">
+                    ${deleteBtn}
+                <div class="text mb-3">
                         <h6 class="fw-bold lh-base ">${idea.text}</h6>
                     </div>
                     <div class="tagName mb-3" >
@@ -97,6 +123,7 @@ render(){
    
 }).join('')
 // this._ideas.appendChild(div) 
+this.addEventListeners()
 }
 
 
