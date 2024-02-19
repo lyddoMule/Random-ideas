@@ -1,6 +1,14 @@
 import './css/main.css'
-import { Modal, Collapse } from "bootstrap";
-// import '../../node_modules/bootstrap/dist/js/bootstrap.js'
+import '@fortawesome/fontawesome-free/css/all.css'
+import IdeaForm from './component/IdeaForm';
+import IdeaList from './component/IdeaList';
 
-console.log('random idea');
+
+
+
+const ideaForm= new IdeaForm()
+ideaForm.render()
+
+const ideaList = new IdeaList()
+ideaList.render()
 
