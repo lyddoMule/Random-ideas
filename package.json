@@ -9,6 +9,7 @@
     "watch": "sass --watch ./scss/main.scss ./client/src/css/main.css"
   },
   "author": "",
+  
   "license": "MIT",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
